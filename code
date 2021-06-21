@@ -1,0 +1,55 @@
+#pip install PyQt5
+#pip install PyQWebEngine
+
+# The super() builin returns a proxy object
+# (temporary object of the superclass)
+# that allows us to access methods of the base class.imprt sys
+
+import sys
+from PyQt5.Qtcore import *
+from PyQt5 QtWidgets import *
+#pin install PyQtWebEngine
+from PyQt5.QtWebEngineWidgets import *
+class window(QMainWindow):
+    def __init__ (self):
+        self.browser = QWebEngineView()
+        self.browser.set url (Qurl('http://google.com'))
+        self.setcentralWidget (self.browser)
+        self.show Maximized()qa
+
+        #nav bar
+        navigation_bar = QToolBar()
+        self.addToolBar(navigation_bar)
+
+        back_button = QAction ('Back',self )
+        back_button.triggered.connect(self.browser.back)
+        navigation_bar.addAction(back_button)
+
+        forward_button = QAction('Forward', self)
+        forward_button_button.triggered.connect(self.browser.forward)
+        navigation_bar.addAction(forward_button)
+
+        reload_button = QAction('Forward', self)
+        reload_button_button_button.triggered.connect(self.browser.reload)
+        navigation_bar.addAction(reload_button)
+
+        home_button = QAction('Home', self)
+        home_button_button_button.triggered.connect(self.navigation_home)
+        navigation_bar.addAction(home_button)
+
+        self.browser.urlChanged.connect(self.update_url)
+
+    def navigation_home(self):
+        self.browser.set url(Qurl('http://google.com'))
+
+    def navigation_to_url(self):
+        url = self.url_bar.text()
+        self.browser.setUrl(Qurl(url))
+
+    def update_url(self,q):
+        self.url_bar.setText(q.tostring())
+
+app = QApplication( sys.argv)
+QApplication.SetApplicationName ('Junaid')
+main = Window()
+app.exec_()
